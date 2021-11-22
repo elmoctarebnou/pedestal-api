@@ -1,4 +1,5 @@
 version: '3.7'
+
 services:
   api:
     build: .
@@ -7,3 +8,9 @@ services:
       - .:/code
     ports:
       - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:11
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
